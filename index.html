@@ -1,9 +1,7 @@
-```html
-<!DOCTYPE html>
+
 <html>
 <head>
 <title>Birthday Surprise</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -65,19 +63,6 @@ animation:shoot 3s linear infinite;
 100%{transform:translateX(-600px) translateY(400px);opacity:0;}
 }
 
-/* MOON */
-
-#moon{
-position:absolute;
-top:50px;
-right:80px;
-width:100px;
-height:100px;
-background:#f5f3ce;
-border-radius:50%;
-box-shadow:0 0 40px #fff;
-}
-
 /* COUNTDOWN */
 
 #countdown{
@@ -130,7 +115,7 @@ color:#ff8efb;
 text-shadow:0 0 10px #ff8efb;
 }
 
-/* PHOTO SLIDESHOW */
+/* SLIDESHOW */
 
 .slideshow{
 width:220px;
@@ -162,7 +147,8 @@ position:relative;
 width:240px;
 height:140px;
 margin:80px auto;
-perspective:900px;
+perspective:1000px;
+transform-style:preserve-3d;
 }
 
 .part{
@@ -171,8 +157,9 @@ height:140px;
 background:#ffd8a8;
 position:absolute;
 border:3px solid #e6a87c;
-transition:1s;
+transition:transform 0.8s ease;
 overflow:hidden;
+backface-visibility:hidden;
 }
 
 .left{
@@ -208,6 +195,25 @@ font-size:22px;
 font-family:cursive;
 color:white;
 text-shadow:0 0 10px #ff0080;
+}
+
+/* KNIFE */
+
+#knife{
+position:absolute;
+top:-20px;
+left:-60px;
+font-size:40px;
+opacity:0;
+transform:rotate(-20deg);
+transition:all 1s ease;
+}
+
+.cut #knife{
+left:120px;
+top:60px;
+opacity:1;
+transform:rotate(20deg);
 }
 
 /* CANDLES */
@@ -251,6 +257,8 @@ border:none;
 border-radius:10px;
 background:#ff9800;
 cursor:pointer;
+display:block;
+margin:20px auto;
 }
 
 /* BALLOONS */
@@ -373,10 +381,7 @@ color:black;
 
 <body>
 
-<div id="moon"></div>
-
 <div id="countdown"></div>
-
 <div id="giftBox">🎁</div>
 
 <div id="mainContent">
@@ -402,13 +407,14 @@ color:black;
 </div>
 
 <div id="cakeName">Anasuya</div>
+<div id="knife">🔪</div>
 
 </div>
 
 <button onclick="cutCake()">🔪 Cut Cake</button>
 
 <div id="message">
-💖 Anasuya, wishing you a wonderful birthday full of happiness! 💖
+💖 Anasuya, wishing you a wonderful happy birthday full of happiness! 💖
 </div>
 
 <audio id="music" src="birthday.mp3"></audio>
@@ -435,14 +441,13 @@ star.style.top=Math.random()*100+"%";
 document.body.appendChild(star);
 }
 
-/* ORIGINAL STARS */
+/* TWINKLING STARS */
 
 for(let i=0;i<120;i++){
 let star=document.createElement("div");
 star.className="star";
 star.style.left=Math.random()*100+"%";
 star.style.top=Math.random()*100+"%";
-star.style.animationDuration=(1+Math.random()*2)+"s";
 document.body.appendChild(star);
 }
 
@@ -489,8 +494,6 @@ c.innerHTML=n;
 },1000);
 };
 
-/* OPEN GIFT */
-
 function openGift(){
 document.getElementById("giftBox").style.display="none";
 document.getElementById("mainContent").style.display="block";
@@ -512,6 +515,10 @@ slides[index].classList.add("active");
 
 function cutCake(){
 
+document.getElementById("knife").style.opacity="1";
+
+setTimeout(()=>{
+
 document.getElementById("cake").classList.toggle("cut");
 
 document.getElementById("music").play();
@@ -531,6 +538,8 @@ startHearts();
 setTimeout(()=>{
 document.getElementById("popup").classList.remove("show");
 },4000);
+
+},600);
 
 }
 
