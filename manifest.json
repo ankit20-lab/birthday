@@ -1,0 +1,15 @@
+{
+  "name": "Anasuya’s Birthday Galaxy",
+  "short_name": "Anasuya Galaxy",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#020111",
+  "theme_color": "#020111",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
