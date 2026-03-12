@@ -721,7 +721,7 @@ For Someone Very Special
 
 <div id="message"></div>
 
-<audio id="music" src="birthday.mp3"></audio>
+<audio id="music" src="birthday.mp3"loop></audio>
 
 </div>
 
@@ -873,6 +873,60 @@ document.body.appendChild(star);
 
 }
 
+
+
+}
+
+function fireworkName(){
+
+let name = "ANASUYA";
+
+/* custom colors for each letter */
+
+let colors = [
+"red",     // A
+"yellow",  // N
+"green",   // A
+"red",   // S
+"blue",    // U
+"purple",  // Y
+"red"      // A
+];
+
+for(let i=0;i<name.length;i++){
+
+setTimeout(()=>{
+
+let star = document.createElement("div");
+
+star.innerHTML = name[i];
+
+star.style.position = "fixed";
+star.style.fontSize = "60px";
+
+/* CUSTOM COLOR */
+
+star.style.color = colors[i];
+
+star.style.left = (20 + i*8) + "%";
+star.style.top = "25%";
+
+star.style.textShadow =
+"0 0 20px " + colors[i] + ", 0 0 40px " + colors[i];
+
+document.body.appendChild(star);
+
+/* shooting star animation */
+
+star.animate([
+{transform:"translateY(-200px)",opacity:0},
+{transform:"translateY(0px)",opacity:1}
+],{duration:800});
+
+}, i*700);
+
+}
+
 }
 
 /* CUT CAKE */
@@ -896,13 +950,40 @@ fireworks();
 confetti();
 hearts();
 createNameStars();
+fireworkName();
 
 /* ===== GOD LEVEL ADDITION ===== */
 
 setTimeout(()=>{
 document.getElementById("finalLove").classList.add("show");
 },6000);
+for(let i=0;i<5;i++){
 
+setTimeout(()=>{
+
+let big=document.createElement("div");
+
+big.style.position="fixed";
+big.style.left=Math.random()*100+"%";
+big.style.top=Math.random()*40+"%";
+big.style.width="20px";
+big.style.height="20px";
+big.style.borderRadius="50%";
+big.style.background="gold";
+big.style.boxShadow="0 0 60px gold";
+
+document.body.appendChild(big);
+
+big.animate([
+{transform:"scale(1)",opacity:1},
+{transform:"scale(20)",opacity:0}
+],{duration:1000});
+
+setTimeout(()=>big.remove(),1000);
+
+},i*500);
+
+}
 }
 
 /* BLOW CANDLES */
